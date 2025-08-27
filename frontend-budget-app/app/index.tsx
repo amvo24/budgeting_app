@@ -1,13 +1,14 @@
 import { Text, View } from "react-native";
 import TransactionComponent from "../components/transactions"
+import SummaryComponent from "../components/summary"
 
 export default function Index() {
 
   return (
     <View>
       <View>
-        <Text>Transactions</Text>
         <TransactionComponent />
+        <SummaryComponent />
       </View>
     </View>
   );
