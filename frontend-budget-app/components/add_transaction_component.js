@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { useState } from 'react';
-// import { Transactions } from '../mock-data/transactions';
 import { addTransaction } from '../api/transactions';
+import {Picker} from '@react-native-picker/picker';
+
+const categories = ["bills", "groceries", "misc", "entertainment", "dining"];
 
 export default function AddTransactionComponent({onAdd}) {
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(categories[0]);
   const [amount, setAmount] = useState('');
   const [notes, setNotes] = useState(''); 
 
@@ -52,11 +54,14 @@ export default function AddTransactionComponent({onAdd}) {
             />
         </View>
         <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="category"
-              value={category}
-              onChangeText={setCategory}
-            />
+            <Picker
+              selectedValue={category}
+              onValueChange={(itemValue) => setCategory(itemValue)}
+            >
+              {categories.map((cat) => (
+                <Picker.Item label={cat} value={cat} key={cat} />
+              ))}
+            </Picker>
         </View>
         <View style={styles.inputContainer}>
             <TextInput
