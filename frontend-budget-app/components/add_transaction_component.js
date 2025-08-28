@@ -1,57 +1,71 @@
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { useState } from 'react';
-import { Transactions } from '../mock-data/transactions';
+// import { Transactions } from '../mock-data/transactions';
+import { addTransaction } from '../api/transactions';
 
-export default function AddTransactionComponent() {
-    const [date, setDate] = useState('');
-    const [category, setCategory] = useState('');
-    const [amount, setAmount] = useState('');
-    const [notes, setNotes] = useState(''); 
+export default function AddTransactionComponent({onAdd}) {
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState('');
+  const [notes, setNotes] = useState(''); 
 
-    const handleSubmit = () => {
+  const handleSubmit = async () => {
 
-        const newTransaction = {
-            id: Transactions.length + 1, // Backend will handle this once integrated
-            date,
-            category,
-            amount: parseFloat(amount),
-            notes,
-        };
-        
-        onAdd(newTransaction); // send new transaction to parent component
+    const newTransaction = {
+        description,
+        date,
+        category,
+        amount: parseFloat(amount),
+        notes,
+        paid_by: "User"
+    };
 
-        // Reset form fields
-        setDate('');
-        setCategory('');
-        setAmount('');
-        setNotes('');
-    }
+    // awaits for backend to save transaction
+    const savedTransaction = await addTransaction(newTransaction);
+      
+    onAdd(savedTransaction); // send new transaction to parent component
+
+    // Reset form fields
+    // setDescription('');
+    // setDate('');
+    // setCategory('');
+    // setAmount('');
+    // setNotes('');
+  }
 
   return (
     <View style={styles.container}>
       <Text>Add Transaction</Text>
-        <View>
+        <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Description"
+              value={description}
+              onChangeText={setDescription}
+            />
+        </View>
+        <View style={styles.inputContainer}>
             <TextInput
               placeholder="Date"
               value={date}
               onChangeText={setDate}
             />
         </View>
-        <View>
+        <View style={styles.inputContainer}>
             <TextInput
               placeholder="category"
               value={category}
               onChangeText={setCategory}
             />
         </View>
-        <View>
+        <View style={styles.inputContainer}>
             <TextInput
               placeholder="amount"
               value={amount}
               onChangeText={setAmount}
             />
         </View>
-        <View>
+        <View style={styles.inputContainer}>
             <TextInput
               placeholder="notes"
               value={notes}
@@ -68,5 +82,9 @@ export default function AddTransactionComponent() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "green"
+  },
+  inputContainer: {
+    marginBottom: 10,
+    backgroundColor: "white"
   }
 });

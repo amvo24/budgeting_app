@@ -1,20 +1,20 @@
 import { Transactions } from "../mock-data/transactions";
 import { Text, View, StyleSheet } from "react-native";
 
-export default function TransactionComponent() {
+export default function TransactionComponent({transactions}) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Recent Transactions</Text>
             <View style={styles.row}>
+                <Text style={[styles.cell, styles.header, styles.right]}>Description</Text>
                 <Text style={[styles.cell, styles.header, styles.left]}>Category</Text>
                 <Text style={[styles.cell, styles.header, styles.center]}>Amount</Text>
-                <Text style={[styles.cell, styles.header, styles.right]}>Date</Text>
             </View>
-            {Transactions.map((tx) => (
+            {transactions.map((tx) => (
                 <View key={tx.id} style={styles.row}>
+                    <Text style={[styles.cell, styles.right]}>{tx.description}</Text>
                     <Text style={[styles.cell, styles.left]}>{tx.category}</Text>
                     <Text style={[styles.cell, styles.center]}>${tx.amount}</Text>
-                    <Text style={[styles.cell, styles.right]}>{tx.date}</Text>
                 </View>
             ))}
         </View>
