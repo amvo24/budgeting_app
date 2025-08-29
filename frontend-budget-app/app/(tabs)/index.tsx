@@ -1,12 +1,13 @@
 import { Text, View, SafeAreaView, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import TransactionComponent from "../../components/transactions"
+import TransactionComponent from "../../components/dashboard_transactions"
 import SummaryComponent from "../../components/summary"
 import AddTransactionComponent from "../../components/add_transaction_component"
 import { getTransactions } from "@/api/transactions";
 
 export default function Index() {
 
+  // This stuff is due to typescript
   type Transaction = {
     description: string;
     date: string;
@@ -18,11 +19,7 @@ export default function Index() {
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  // const handleGetTransaction = (transaction: Transaction) => {
-  //   const response = getTransactions()
-  //   setTransactions(response)
-  // }
-
+  // hits backend for transactions in DB when component mounts DOM
   useEffect(() => {
     const handleGet = async () => {
       const response = await getTransactions()
@@ -32,6 +29,7 @@ export default function Index() {
     handleGet()
   }, [])
 
+  // updates transaction state when child component form creates a new transaction
   const handleAddTransaction = (newTransaction: Transaction) => {
     setTransactions((prev) => [...prev, newTransaction]);
   };
@@ -40,7 +38,7 @@ export default function Index() {
     <SafeAreaView>
     <View>
       <View>
-        <Text style={styles.title}>Budget App</Text>
+        <Text style={styles.title}>Dashboard</Text>
         <TransactionComponent transactions={transactions} />
         <SummaryComponent />
         <AddTransactionComponent onAdd={handleAddTransaction} />
