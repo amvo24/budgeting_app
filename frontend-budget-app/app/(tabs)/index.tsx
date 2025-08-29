@@ -1,8 +1,8 @@
 import { Text, View, SafeAreaView, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import TransactionComponent from "../components/transactions"
-import SummaryComponent from "../components/summary"
-import AddTransactionComponent from "../components/add_transaction_component"
+import TransactionComponent from "../../components/transactions"
+import SummaryComponent from "../../components/summary"
+import AddTransactionComponent from "../../components/add_transaction_component"
 
 export default function Index() {
 
@@ -28,7 +28,7 @@ export default function Index() {
         <Text style={styles.title}>Budget App</Text>
         <TransactionComponent transactions={transactions} />
         <SummaryComponent />
-        <AddTransactionComponent onAdd={handleAddTransaction} />
+        {/* <AddTransactionComponent onAdd={handleAddTransaction} /> */}
       </View>
     </View>
     </SafeAreaView>
