@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import TransactionComponent from "../../components/transactions"
 import SummaryComponent from "../../components/summary"
 import AddTransactionComponent from "../../components/add_transaction_component"
+import { getTransactions } from "@/api/transactions";
 
 export default function Index() {
 
@@ -17,8 +18,22 @@ export default function Index() {
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
+  // const handleGetTransaction = (transaction: Transaction) => {
+  //   const response = getTransactions()
+  //   setTransactions(response)
+  // }
+
+  useEffect(() => {
+    const handleGet = async () => {
+      const response = await getTransactions()
+      setTransactions(response)
+    }
+    // console.log("THIS IS RESPONSE: ", response)
+    handleGet()
+  }, [])
+
   const handleAddTransaction = (newTransaction: Transaction) => {
-      setTransactions((prev) => [...prev, newTransaction]);
+    setTransactions((prev) => [...prev, newTransaction]);
   };
 
   return (
@@ -28,7 +43,7 @@ export default function Index() {
         <Text style={styles.title}>Budget App</Text>
         <TransactionComponent transactions={transactions} />
         <SummaryComponent />
-        {/* <AddTransactionComponent onAdd={handleAddTransaction} /> */}
+        <AddTransactionComponent onAdd={handleAddTransaction} />
       </View>
     </View>
     </SafeAreaView>

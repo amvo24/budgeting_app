@@ -1,5 +1,6 @@
-import { Transactions } from "../mock-data/transactions";
+// import { Transactions } from "../mock-data/transactions";
 import { Text, View, StyleSheet } from "react-native";
+import { getTransactions } from "@/api/transactions";
 
 export default function TransactionComponent({transactions}) {
     return (
