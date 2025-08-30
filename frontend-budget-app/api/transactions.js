@@ -26,7 +26,7 @@ export const getTransactionByID = async (id) => {
 // Create a Transaction
 export const addTransaction = async (transaction) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}`, transaction);
+        const response = await axios.post(`${API_BASE_URL}/`, transaction);
         return response.data;
     } catch (error) {
         console.error("Error adding transaction:", error);

@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, StyleSheet, Button } from "react-native";
+import { Text, View, SafeAreaView, StyleSheet, Button, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import TransactionComponent from "../../components/dashboard_transactions"
@@ -11,7 +11,6 @@ const router = useRouter()
 const logOutButton = () => {
   router.push("..")
 }
-
 
 export default function Index() {
 
@@ -44,7 +43,7 @@ export default function Index() {
 
   return (
     <SafeAreaView>
-    <View>
+    <ScrollView>
       <View>
         <View style={styles.topContainer}>
           <Text style={styles.title}>Dashboard</Text>
@@ -54,7 +53,7 @@ export default function Index() {
         <SummaryComponent />
         <AddTransactionComponent onAdd={handleAddTransaction} />
       </View>
-    </View>
+    </ScrollView>
     </SafeAreaView>
   );
 }

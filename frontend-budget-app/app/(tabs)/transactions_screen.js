@@ -1,6 +1,7 @@
 import { Text, View, SafeAreaView, StyleSheet } from "react-native";
-import React, {useState, useEffect} from "react";
-// import TransactionComponent from "@/components/dashboard_transactions";
+import React, {useState, useEffect, useCallback} from "react";
+import { useFocusEffect } from "expo-router";
+import TransactionComponent from "@/components/dashboard_transactions";
 import TransactionCard from "@/components/transactions_card"
 import { getTransactions } from "@/api/transactions";
 
@@ -8,13 +9,18 @@ export default function TransactionScreen() {
 
     const [transactions, setTransactions] = useState([])
 
-    useEffect(() => {
+    useFocusEffect(
+      useCallback(() => {
         const handleGet = async () => {
             const response = await getTransactions()
             setTransactions(response)
         }
+
         handleGet()
-    }, [])
+
+      }, [])
+    
+    )
 
     return (
         <SafeAreaView>
