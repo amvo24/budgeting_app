@@ -19,9 +19,11 @@ export default function TransactionScreen() {
     return (
         <SafeAreaView>
             <Text style={styles.title}>Transactions</Text>
-            {/* <View>
-                <TransactionComponent transactions={transactions} />
-            </View> */}
+            <View style={styles.divider}></View>
+            <View style={styles.search}>
+                <Text>SEARCH BAR WILL GO HERE</Text>
+            </View>
+            <View style={styles.divider}></View>
             {transactions.map((tx) => (
                 <TransactionCard key={tx.id} transaction={tx} />
             ))}
@@ -34,5 +36,20 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginLeft: 20,
+    },
+  divider: {
+    height: 1,          
+    backgroundColor: '#ccc',
+    width: '100%',
+    marginVertical: 10, 
+  },
+  search: {
+    height: '5%',
+    // width: '100%',
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10,
   }
 })
