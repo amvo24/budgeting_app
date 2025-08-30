@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, StyleSheet } from "react-native";
+import { Text, View, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import React, {useState, useEffect, useCallback} from "react";
 import { useFocusEffect } from "expo-router";
 import TransactionComponent from "@/components/dashboard_transactions";
@@ -30,9 +30,11 @@ export default function TransactionScreen() {
                 <Text>SEARCH BAR WILL GO HERE</Text>
             </View>
             <View style={styles.divider}></View>
+            <ScrollView>
             {transactions.map((tx) => (
                 <TransactionCard key={tx.id} transaction={tx} />
             ))}
+            </ScrollView>
         </SafeAreaView>
     )
 }
