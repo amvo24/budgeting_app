@@ -8,7 +8,7 @@ const goToDashBoard = () => {
     router.push('/(tabs)/')
 }
 
-export default function Index() {
+export default function LoginScreen() {
     return (
         <SafeAreaView style={styles.parentContainer}>
             <View style={styles.container}>
