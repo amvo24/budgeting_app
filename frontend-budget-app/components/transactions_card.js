@@ -1,4 +1,4 @@
-import {View, SafeAreaView, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 
 export default function TransactionCard({transaction}) {
     return (

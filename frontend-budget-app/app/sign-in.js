@@ -1,9 +1,5 @@
 import {View, Text, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native'
-import {useRouter, usePathname} from 'expo-router'
-import { useEffect } from 'react'
 import LoginForm from '../components/login_form'
-import { useAuth } from '../context/auth_context'
-
 
 
 export default function LoginScreen() {

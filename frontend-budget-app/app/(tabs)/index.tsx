@@ -1,13 +1,11 @@
 import { Text, View, SafeAreaView, StyleSheet, Button, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
 import TransactionComponent from "../../components/dashboard_transactions"
 import SummaryComponent from "../../components/summary"
 import AddTransactionComponent from "../../components/add_transaction_component"
 import { getTransactions } from "@/api/transactions";
 import { useAuth } from "@/context/auth_context";
 
-const router = useRouter()
 
 
 export default function Index() {
