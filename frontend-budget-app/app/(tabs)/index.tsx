@@ -5,14 +5,14 @@ import TransactionComponent from "../../components/dashboard_transactions"
 import SummaryComponent from "../../components/summary"
 import AddTransactionComponent from "../../components/add_transaction_component"
 import { getTransactions } from "@/api/transactions";
+import { useAuth } from "@/context/auth_context";
 
 const router = useRouter()
 
-const logOutButton = () => {
-  router.replace("../sign-in")
-}
 
 export default function Index() {
+
+  const {logout} = useAuth()
 
   // This stuff is due to typescript
   type Transaction = {
@@ -47,7 +47,7 @@ export default function Index() {
       <View>
         <View style={styles.topContainer}>
           <Text style={styles.title}>Dashboard</Text>
-          <Button title="Log Out" onPress={logOutButton} />
+          <Button title="Log Out" onPress={logout} />
         </View>
         <TransactionComponent transactions={transactions} />
         <SummaryComponent />

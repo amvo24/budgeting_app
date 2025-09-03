@@ -6,11 +6,11 @@ export default function TabLayout() {
     const {isAuthenticated} = useAuth()
 
     if (!isAuthenticated) {
-        // console.log('DID THIS HIT', isAuthenticated )
         return <Redirect href="/sign-in"/>
     }
     return (
         <Tabs>
+            <Tabs.Protected guard={isAuthenticated}>
             <Tabs.Screen 
             name="index"
             options={{
@@ -32,6 +32,7 @@ export default function TabLayout() {
                 headerShown: false,
             }}
             />
+        </Tabs.Protected>
         </Tabs>
     )
 }

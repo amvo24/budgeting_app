@@ -30,6 +30,8 @@ export function AuthProvider({ children }) {
         await AsyncStorage.removeItem("refreshToken")
         setAccessToken(null)
         setUser(null)
+        setIsAuthenticated(false)
+        router.replace('/sign-in')
     }
 
     return (
