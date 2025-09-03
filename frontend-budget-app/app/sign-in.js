@@ -1,19 +1,18 @@
 import {View, Text, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native'
-import {useRouter} from 'expo-router'
+import {useRouter, usePathname} from 'expo-router'
+import { useEffect } from 'react'
 import LoginForm from '../components/login_form'
+import { useAuth } from '../context/auth_context'
 
-const router = useRouter()
 
-const goToDashBoard = () => {
-    router.push('/(tabs)/')
-}
 
 export default function LoginScreen() {
+
     return (
         <SafeAreaView style={styles.parentContainer}>
             <View style={styles.container}>
                 <Text style={styles.title}>BUDGET APP</Text>
-                <LoginForm handleLogin={goToDashBoard}/>
+                <LoginForm />
                 <TouchableOpacity style={styles.createTextContainer}>
                     <Text style={styles.createText}>Create Account</Text>
                  </TouchableOpacity>

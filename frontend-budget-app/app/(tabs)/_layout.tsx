@@ -1,7 +1,14 @@
-import { Tabs } from "expo-router";
+import { Tabs, Redirect } from "expo-router";
 import React from "react";
+import { useAuth } from "@/context/auth_context";
 
 export default function TabLayout() {
+    const {isAuthenticated} = useAuth()
+
+    if (!isAuthenticated) {
+        // console.log('DID THIS HIT', isAuthenticated )
+        return <Redirect href="/sign-in"/>
+    }
     return (
         <Tabs>
             <Tabs.Screen 

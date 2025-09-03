@@ -9,7 +9,7 @@ import { getTransactions } from "@/api/transactions";
 const router = useRouter()
 
 const logOutButton = () => {
-  router.replace("..")
+  router.replace("../sign-in")
 }
 
 export default function Index() {

@@ -6,6 +6,7 @@ import { loginUser } from "../api/auth"
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [user, setUser] = useState([])
     const [accessToken, setAccessToken] = useState([])
 
@@ -29,7 +30,14 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{accessToken, user, login, logout}}>
+        <AuthContext.Provider 
+            value={{
+                accessToken, 
+                user, 
+                login, 
+                logout,
+                isAuthenticated
+            }}>
             {children}
         </AuthContext.Provider>
     )

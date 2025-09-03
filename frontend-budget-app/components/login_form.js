@@ -1,6 +1,9 @@
 import {View, Text, StyleSheet, TouchableOpacity, Button, TextInput} from 'react-native'
 
-export default function LoginForm({handleLogin}) {
+export default function LoginForm() {
+
+    // const handleLogin
+
     return (
         <View style={styles.formContainer}>
             <View style={styles.textContainer}>
@@ -15,7 +18,7 @@ export default function LoginForm({handleLogin}) {
                     style={styles.inputLine}
                 />
             </View>
-            <TouchableOpacity style={styles.buttonStyling} onPress={handleLogin}>
+            <TouchableOpacity style={styles.buttonStyling} onPress={() => console.log("TURTLE")}>
                 <Text style={styles.buttonText}>Sign in</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.forgotTextContainer}>
