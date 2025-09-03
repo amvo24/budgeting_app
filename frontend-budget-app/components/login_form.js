@@ -1,8 +1,11 @@
 import {View, Text, StyleSheet, TouchableOpacity, Button, TextInput} from 'react-native'
+import { useAuth } from '../context/auth_context'
+import { useState } from 'react'
 
 export default function LoginForm() {
-
-    // const handleLogin
+    const {login} = useAuth()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     return (
         <View style={styles.formContainer}>
@@ -10,15 +13,19 @@ export default function LoginForm() {
                 <Text style={styles.inputTitle}>Enter your username</Text>
                 <TextInput
                     style={styles.inputLine}
+                    value={email}
+                    onChangeText={setEmail}
                 />              
             </View>
             <View style={styles.textContainer}>
                 <Text style={styles.inputTitle}>Enter your password</Text> 
                 <TextInput
                     style={styles.inputLine}
+                    value={password}
+                    onChangeText={setPassword}
                 />
             </View>
-            <TouchableOpacity style={styles.buttonStyling} onPress={() => console.log("TURTLE")}>
+            <TouchableOpacity style={styles.buttonStyling} onPress={() => login(email, password)}>
                 <Text style={styles.buttonText}>Sign in</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.forgotTextContainer}>

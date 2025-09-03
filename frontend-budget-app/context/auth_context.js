@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { loginUser } from "../api/auth"
+import { router } from "expo-router"
 
 // Here we create the context
 const AuthContext = createContext()
@@ -17,6 +18,8 @@ export function AuthProvider({ children }) {
             await AsyncStorage.setItem("refreshToken", refresh)
             setAccessToken(access)
             setUser(email)
+            setIsAuthenticated(true)
+            router.replace('/(tabs)/')
         } catch (error) {
             throw new Error("Invalid login")
         }
