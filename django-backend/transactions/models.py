@@ -18,6 +18,7 @@ class Transaction(models.Model):
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     notes = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     #PAID BY WILL BE A FOREIGN KEY TO USER MODEL LATER ON
     paid_by = models.CharField(max_length=100)     
