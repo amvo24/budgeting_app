@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 User = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=50, null=False)
     user = models.ForeignKey(
-        User, 
+        # settings.AUTH_USER_MODEL, 
+        User,
         on_delete=models.CASCADE, 
         null=True, 
         blank=True,
@@ -19,7 +21,8 @@ class Category(models.Model):
 
 class Summary(models.Model):
     user = models.ForeignKey(
-        User, 
+        # settings.AUTH_USER_MODEL, 
+        User,
         on_delete=models.CASCADE, 
         related_name="summaries"
     )
